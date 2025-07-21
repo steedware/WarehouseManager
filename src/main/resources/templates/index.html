@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">System Zarządzania Magazynem</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 3rem;
+            text-align: center;
+            max-width: 800px;
+            width: 90%;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            font-weight: 300;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .version {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+        .links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .link-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .link-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .link-card h3 {
+            margin: 0 0 1rem 0;
+            color: #667eea;
+            font-size: 1.3rem;
+        }
+        .link-card p {
+            margin: 0;
+            color: #666;
+            line-height: 1.6;
+        }
+        .features {
+            text-align: left;
+            margin: 2rem 0;
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+        .features h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+        .features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .features li:before {
+            content: "✅ ";
+            margin-right: 0.5rem;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .tech-badge {
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="${title}">System Zarządzania Magazynem</h1>
+        <p class="subtitle">Kompleksowe rozwiązanie do zarządzania magazynem z REST API</p>
+        <div class="version" th:text="'Wersja ' + ${version}">Wersja 1.0.0</div>
+
+        <div class="tech-stack">
+            <span class="tech-badge">Java 21</span>
+            <span class="tech-badge">Spring Boot</span>
+            <span class="tech-badge">PostgreSQL</span>
+            <span class="tech-badge">Swagger/OpenAPI</span>
+            <span class="tech-badge">Docker</span>
+        </div>
+
+        <div class="features">
+            <h3>Funkcjonalności</h3>
+            <ul>
+                <li>Zarządzanie produktami (CRUD)</li>
+                <li>Lokalizacje magazynowe</li>
+                <li>Historia ruchów magazynowych</li>
+                <li>Kontrola stanów magazynowych</li>
+                <li>Eksport raportów CSV</li>
+                <li>Alerty niskich stanów</li>
+            </ul>
+        </div>
+
+        <div class="links">
+            <a href="/swagger-ui.html" class="link-card">
+                <h3>📚 Dokumentacja API</h3>
+                <p>Interaktywna dokumentacja Swagger UI z możliwością testowania wszystkich endpointów API</p>
+            </a>
+
+            <a href="/api/health" class="link-card">
+                <h3>🔍 Status Aplikacji</h3>
+                <p>Sprawdź status aplikacji i połączenia z bazą danych</p>
+            </a>
+
+            <a href="/h2-console" class="link-card">
+                <h3>🗄️ Konsola H2</h3>
+                <p>Zarządzaj bazą danych H2 (dostępne w trybie testowym)</p>
+            </a>
+
+            <a href="/api-docs" class="link-card">
+                <h3>📋 Specyfikacja OpenAPI</h3>
+                <p>Pełna specyfikacja API w formacie JSON dla integracji</p>
+            </a>
+        </div>
+
+        <div style="margin-top: 2rem; color: #666; font-size: 0.9rem;">
+            <p>🚀 Uruchom <code>docker-compose up -d</code> dla pełnej konfiguracji z PostgreSQL</p>
+            <p>💻 Stworzono przez <a href="https://github.com/steedware" style="color: #667eea;">steedware</a></p>
+        </div>
+    </div>
+</body>
+</html>
