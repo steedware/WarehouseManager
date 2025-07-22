@@ -1,8 +1,8 @@
-# System Zarządzania Magazynem
+# Warehouse Management System
 
-## Opis
+## Description
 
-Kompleksowy system zarządzania magazynem napisany w Java z użyciem Spring Boot. Aplikacja umożliwia pełne zarządzanie produktami, lokalizacjami magazynowymi, śledzenie ruchów magazynowych oraz generowanie raportów.
+A comprehensive warehouse management system written in Java using Spring Boot. The application enables full management of products, warehouse locations, tracking of inventory movements, and report generation.
 
 ## Tech Stack
 
@@ -14,142 +14,142 @@ Kompleksowy system zarządzania magazynem napisany w Java z użyciem Spring Boot
 - **Docker & Docker Compose**
 - **Maven**
 
-## Funkcjonalności
+## Features
 
-### ✅ Zarządzanie Produktami
-- Dodawanie, edycja, usuwanie produktów
-- Wyszukiwanie po nazwie i SKU
-- Kontrola stanów magazynowych
-- Alerty o niskich stanach
+### Product Management
+- Add, edit, delete products
+- Search by name and SKU
+- Inventory level control
+- Low stock alerts
 
-### ✅ Lokalizacje Magazynowe
-- Zarządzanie lokalizacjami w magazynie
-- Przypisywanie produktów do lokalizacji
-- Wyszukiwanie po kodach lokalizacji
+### Warehouse Locations
+- Manage warehouse locations
+- Assign products to locations
+- Search by location codes
 
-### ✅ Historia Ruchów Magazynowych
-- Śledzenie wszystkich operacji magazynowych
-- Typy ruchów: Przyjęcie, Wydanie, Przeniesienie, Korekta, Zwrot
-- Automatyczna aktualizacja stanów
-- Filtrowanie po dacie, produkcie, lokalizacji
+### Inventory Movement History
+- Track all warehouse operations
+- Movement types: Inbound, Outbound, Transfer, Adjustment, Return
+- Automatic inventory updates
+- Filtering by date, product, location
 
-### ✅ System Raportów
-- Eksport do CSV
-- Raport wszystkich produktów
-- Raport produktów o niskim stanie
-- Raport ruchów magazynowych z filtrowaniem
+### Reporting System
+- Export to CSV
+- Report of all products
+- Report of low stock products
+- Report of inventory movements with filtering
 
-### ✅ API Documentation
-- Kompletna dokumentacja Swagger/OpenAPI
-- Dostępna pod adresem: `http://localhost:8080/swagger-ui.html`
+### API Documentation
+- Full Swagger/OpenAPI documentation
+- Available at: `http://localhost:8080/swagger-ui.html`
 
-## Uruchamianie
+## Getting Started
 
-### Opcja 1: Docker Compose (Zalecana)
+### Option 1: Docker Compose (Recommended)
 
 ```bash
-# Klonowanie repozytorium
+# Clone the repository
 git clone https://github.com/steedware/WarehouseManager.git
 cd WarehouseManager
 
-# Budowanie aplikacji
+# Build the application
 mvn clean package -DskipTests
 
-# Uruchomienie z Docker Compose
+# Run with Docker Compose
 docker-compose up -d
 ```
 
-### Opcja 2: Lokalne uruchomienie
+### Option 2: Local Setup
 
-#### Wymagania
+#### Requirements
 - Java 21+
 - Maven 3.6+
 - PostgreSQL 12+
 
-#### Konfiguracja bazy danych
+#### Database Setup
 ```sql
 CREATE DATABASE warehouse_db;
 CREATE USER warehouse_user WITH PASSWORD 'warehouse_pass';
 GRANT ALL PRIVILEGES ON DATABASE warehouse_db TO warehouse_user;
 ```
 
-#### Uruchomienie
+#### Running the Application
 ```bash
-# Klonowanie repozytorium
+# Clone the repository
 git clone https://github.com/steedware/WarehouseManager.git
 cd WarehouseManager
 
-# Instalacja zależności i uruchomienie
+# Install dependencies and run
 mvn clean install
 mvn spring-boot:run
 ```
 
-## Endpoints API
+## API Endpoints
 
-### Produkty
-- `GET /api/products` - Lista wszystkich produktów
-- `POST /api/products` - Dodanie nowego produktu
-- `GET /api/products/{id}` - Szczegóły produktu
-- `PUT /api/products/{id}` - Aktualizacja produktu
-- `DELETE /api/products/{id}` - Usunięcie produktu
-- `GET /api/products/low-stock` - Produkty o niskim stanie
+### Products
+- `GET /api/products` – List all products  
+- `POST /api/products` – Add a new product  
+- `GET /api/products/{id}` – Get product details  
+- `PUT /api/products/{id}` – Update a product  
+- `DELETE /api/products/{id}` – Delete a product  
+- `GET /api/products/low-stock` – List low stock products  
 
-### Lokalizacje
-- `GET /api/locations` - Lista wszystkich lokalizacji
-- `POST /api/locations` - Dodanie nowej lokalizacji
-- `GET /api/locations/{id}` - Szczegóły lokalizacji
-- `PUT /api/locations/{id}` - Aktualizacja lokalizacji
-- `DELETE /api/locations/{id}` - Usunięcie lokalizacji
+### Locations
+- `GET /api/locations` – List all locations  
+- `POST /api/locations` – Add a new location  
+- `GET /api/locations/{id}` – Get location details  
+- `PUT /api/locations/{id}` – Update a location  
+- `DELETE /api/locations/{id}` – Delete a location  
 
-### Ruchy Magazynowe
-- `GET /api/stock-movements` - Lista wszystkich ruchów
-- `POST /api/stock-movements` - Dodanie nowego ruchu
-- `GET /api/stock-movements/product/{id}` - Ruchy dla produktu
-- `GET /api/stock-movements/date-range` - Ruchy z okresu
+### Stock Movements
+- `GET /api/stock-movements` – List all movements  
+- `POST /api/stock-movements` – Add a new movement  
+- `GET /api/stock-movements/product/{id}` – Movements by product  
+- `GET /api/stock-movements/date-range` – Movements by date range  
 
-### Raporty
-- `GET /api/reports/products` - Raport produktów (CSV)
-- `GET /api/reports/low-stock` - Raport niskich stanów (CSV)
-- `GET /api/reports/stock-movements` - Raport ruchów (CSV)
+### Reports
+- `GET /api/reports/products` – Products report (CSV)  
+- `GET /api/reports/low-stock` – Low stock report (CSV)  
+- `GET /api/reports/stock-movements` – Stock movements report (CSV)  
 
-## Struktura Bazy Danych
+## Database Schema
 
-### Tabela products
-- `id` (PK) - Identyfikator produktu
-- `name` - Nazwa produktu
-- `description` - Opis produktu
-- `sku` - Kod SKU (unikalny)
-- `price` - Cena produktu
-- `stock` - Aktualny stan
-- `min_stock` - Minimalny stan
-- `location_id` (FK) - Powiązanie z lokalizacją
-- `created_at`, `updated_at` - Znaczniki czasu
+### Table: products
+- `id` (PK) – Product ID  
+- `name` – Product name  
+- `description` – Product description  
+- `sku` – SKU code (unique)  
+- `price` – Product price  
+- `stock` – Current stock  
+- `min_stock` – Minimum stock level  
+- `location_id` (FK) – Linked warehouse location  
+- `created_at`, `updated_at` – Timestamps  
 
-### Tabela locations
-- `id` (PK) - Identyfikator lokalizacji
-- `name` - Nazwa lokalizacji
-- `description` - Opis lokalizacji
-- `code` - Kod lokalizacji (unikalny)
-- `created_at` - Data utworzenia
+### Table: locations
+- `id` (PK) – Location ID  
+- `name` – Location name  
+- `description` – Location description  
+- `code` – Location code (unique)  
+- `created_at` – Creation date  
 
-### Tabela stock_movements
-- `id` (PK) - Identyfikator ruchu
-- `product_id` (FK) - Powiązanie z produktem
-- `location_id` (FK) - Powiązanie z lokalizacją
-- `movement_type` - Typ ruchu (ENUM)
-- `quantity` - Ilość
-- `notes` - Uwagi
-- `reference` - Numer referencyjny
-- `created_at` - Data utworzenia
+### Table: stock_movements
+- `id` (PK) – Movement ID  
+- `product_id` (FK) – Linked product  
+- `location_id` (FK) – Linked location  
+- `movement_type` – Movement type (ENUM)  
+- `quantity` – Quantity  
+- `notes` – Notes  
+- `reference` – Reference number  
+- `created_at` – Creation date  
 
-## Przykładowe Żądania
+## Sample Requests
 
-### Dodanie produktu
+### Add a Product
 ```json
 POST /api/products
 {
     "name": "Laptop Dell XPS 13",
-    "description": "Ultrabook do pracy biurowej",
+    "description": "Ultrabook for office work",
     "sku": "DELL-XPS13-001",
     "price": 4999.99,
     "minStock": 5,
@@ -157,7 +157,7 @@ POST /api/products
 }
 ```
 
-### Dodanie ruchu magazynowego
+### Add a Stock Movement
 ```json
 POST /api/stock-movements
 {
@@ -165,24 +165,24 @@ POST /api/stock-movements
     "locationId": 1,
     "movementType": "IN",
     "quantity": 10,
-    "notes": "Dostawa od dostawcy",
+    "notes": "Delivery from supplier",
     "reference": "DOC-2024-001"
 }
 ```
 
-## Technologie i Wzorce
+## Technologies and Patterns
 
-- **Architektura warstwowa** (Controller → Service → Repository)
-- **DTO Pattern** dla separacji warstw
-- **Repository Pattern** z Spring Data JPA
-- **Bean Validation** dla walidacji danych
-- **Transakcje** dla spójności danych
-- **OpenAPI 3.0** dla dokumentacji API
+- **Layered architecture** (Controller → Service → Repository)  
+- **DTO Pattern** for layer separation  
+- **Repository Pattern** with Spring Data JPA  
+- **Bean Validation** for data validation  
+- **Transactions** for data consistency  
+- **OpenAPI 3.0** for API documentation  
 
-## Autor
+## Author
 
-Stworzono przez [steedware](https://github.com/steedware)
+Created by [steedware](https://github.com/steedware)
 
-## Licencja
+## License
 
 MIT License
